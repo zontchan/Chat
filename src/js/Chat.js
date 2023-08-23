@@ -1,3 +1,4 @@
+import moment from "moment";
 export default class Chat{
     constructor(container, url) {
         this.nickname = null;
@@ -155,6 +156,7 @@ export default class Chat{
     onMessageSend(message) {
         const data = {message: message};
         this.ws.send(JSON.stringify(data));
+        this.chatInput.value = '';
     }
 
     renderNewMessage(data) {
@@ -168,7 +170,7 @@ export default class Chat{
         }
         const messageInfo = document.createElement('p');
         messageInfo.classList.add('message-info');
-        messageInfo.innerText = `${data.sender}, ${data.time}`;
+        messageInfo.innerText = `${data.sender}, ${moment().format('DD.MM.YYYY hh:mm A')}`;
         message.appendChild(messageInfo);
         const messageContent = document.createElement('p');
         messageContent.classList.add('message-content');
@@ -176,6 +178,7 @@ export default class Chat{
         message.appendChild(messageContent);
 
         container.appendChild(message);
+        container.scrollTo(0, container.scrollHeight);
     }
 
 }
