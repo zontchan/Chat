@@ -95,7 +95,7 @@ label{
     min-height: 400px;
 }
 .messages-list{
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 40px;

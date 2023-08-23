@@ -1,11 +1,12 @@
 export default class Chat{
     constructor(container, url) {
+        this.nickname = null;
         this.onlineMembers = [];
         this.messagesStory = [];
-      this.parentElement = container;
-      this.url = url;
-      this.server();
-      this.renderNickModal();
+        this.parentElement = container;
+        this.url = url;
+        this.server();
+        this.renderNickModal();
     }
 
     renderNickModal() {
@@ -59,6 +60,7 @@ export default class Chat{
                     this.renderErrModal('Пользователь с таким никнеймом уже существует! Пожалуйста, выберите другой.');
                 }
                else if(res.hasOwnProperty('status') && res.status === 'success') {
+                   this.nickname = res.nickname;
                    this.parentElement.innerHTML = '';
                    this.renderChatUI();
                }
@@ -67,7 +69,6 @@ export default class Chat{
                }
                else if(res.hasOwnProperty('allMessages')) {
                    this.messagesStory = res.allMessages;
-                   console.log(this.messagesStory);
                }
             }else{
                 //the json is not ok
@@ -92,7 +93,12 @@ export default class Chat{
         this.onlineMembers.forEach((member) => {
             const li = document.createElement('li');
             li.classList.add('chat-member');
-            li.innerText = member;
+            if(member === this.nickname){
+                li.innerText = 'You';
+            }
+            else {
+                li.innerText = member;
+            }
             chatMembersList.appendChild(li);
             chatMembers.style.left = `-${chatMembers.offsetWidth}px`;
         })
@@ -133,9 +139,7 @@ export default class Chat{
             </form>
     </div>`;
         this.renderMembersList();
-        console.log(this.messagesStory);
         if(this.messagesStory.length!== 0) {
-            console.log('ok');
             this.messagesStory.forEach((message) => {
                 this.renderNewMessage(message);
             })
@@ -151,7 +155,6 @@ export default class Chat{
     onMessageSend(message) {
         const data = {message: message};
         this.ws.send(JSON.stringify(data));
-        message = '';
     }
 
     renderNewMessage(data) {
@@ -160,6 +163,9 @@ export default class Chat{
         const container = document.querySelector('.messages-list');
         const message = document.createElement('li');
         message.classList.add('message');
+        if(data.sender === this.nickname){
+            message.classList.add('you');
+        }
         const messageInfo = document.createElement('p');
         messageInfo.classList.add('message-info');
         messageInfo.innerText = `${data.sender}, ${data.time}`;
