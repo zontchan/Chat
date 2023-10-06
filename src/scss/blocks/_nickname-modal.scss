@@ -1,0 +1,53 @@
+
+.nickname-modal{
+  position: relative;
+  background-color: $bg-color;
+  border-radius: 20px;
+  height: 200px;
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.nickname-modal__form{
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  width: 100%;
+}
+.label{
+  text-transform: uppercase;
+}
+.child{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  text-align: center;
+}
+.nickname-modal__input{
+  padding: 10px;
+  font-size: 16px;
+  background-color: $ww;
+  border-radius: 10px;
+}
+.nickname-modal__button{
+  //width: 100px;
+  color: $ww;
+  align-self: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: $accent-color;
+  transition: all 0.2s ease-in-out;
+
+  &:active{
+    transform: scale(1.1);
+  }
+  &:hover{
+    background-color: #5b3f36;
+  }
+}

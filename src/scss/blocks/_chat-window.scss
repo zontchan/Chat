@@ -1,0 +1,103 @@
+.chat-window{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 20px;
+  padding: 20px;
+
+  min-height: 400px;
+
+  background-color: $ww;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  border: 6px solid $border-color;
+}
+.messages-list{
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-height: 400px;
+
+  margin-bottom: 40px;
+  padding-right: 20px;
+
+  align-content: flex-start;
+  align-items: flex-start;
+}
+.chat-input{
+  height: 40px;
+  width: 500px;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid $border-color;
+  &::placeholder{
+    transition: opacity 0.2s ease-in-out;
+  }
+  &:focus::placeholder{
+    opacity: 50%;
+  }
+}
+.chat-submit-button{
+  height: 40px;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  background-color: $access-color;
+  color: $ww;
+  transition: all 0.1s ease-in-out;
+  &:hover{
+   background-color: #53593e;
+  }
+  &:active{
+    transform: scale(1.05);
+  }
+}
+.message{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border: 1px solid $border-color;
+  border-radius: 20px;
+  padding: 10px;
+}
+.no-message{
+  text-align: center;
+}
+.message.you{
+  align-self: end;
+}
+
+.message.you .message-info{
+  color: $you-message;
+}
+
+.chat-members{
+  position: absolute;
+  //border-right: none;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: $ww;
+  border: 6px solid $border-color;
+  border-right: none;
+}
+
+.chat-members__list{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.chat-member{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.chat-member::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid $online-color;
+  border-radius: 20px;
+}
