@@ -120,13 +120,13 @@ label{
     border: none;
 }
 .message{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-        border: 1px solid gray;
-        border-radius: 20px;
-        padding: 10px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 10px;
 }
 .no-message{
     text-align: center;
