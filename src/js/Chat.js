@@ -13,7 +13,7 @@ export default class Chat{
     renderNickModal() {
         this.parentElement.innerHTML = ` <div class="nickname-modal">
        <form action="" class="nickname-modal__form">
-         <label class="child">
+         <label class="label child">
              Выберите никнейм
              <input type="text" class="nickname-modal__input">
          </label>
@@ -90,7 +90,7 @@ export default class Chat{
         const chatMembers = document.querySelector('.chat-members');
         chatMembers.style.left = `-${chatMembers.offsetWidth}px`;
         const chatMembersList = chatMembers.querySelector('.chat-members__list');
-        chatMembersList.innerHTML = '';
+        chatMembersList.innerHTML = 'Online members';
         this.onlineMembers.forEach((member) => {
             const li = document.createElement('li');
             li.classList.add('chat-member');
@@ -117,6 +117,7 @@ export default class Chat{
        modal.appendChild(modalContent);
        modal.appendChild(button);
 
+
        this.parentElement.appendChild(modal);
        this.butt = document.querySelector('.error-modal__button');
        this.butt.addEventListener('click', (e)=>{
@@ -135,7 +136,7 @@ export default class Chat{
           <li class="no-message">Пока нет сообщений</li>
         </ul>
         <form>
-            <input type="text" class="chat-input" placeholder="Введите ваше сообщение">
+            <input type="text" class="chat-input" placeholder="Введите ваше сообщение" required>
             <button class="chat-submit-button" type="submit">Отправить</button>
             </form>
     </div>`;
@@ -149,6 +150,9 @@ export default class Chat{
         this.chatSubmit = document.querySelector('.chat-submit-button');
         this.chatSubmit.addEventListener('click', (e) => {
             e.preventDefault();
+            if(this.chatInput.value.length === 0){
+                return;
+            }
             this.onMessageSend(this.chatInput.value);
         })
     }
